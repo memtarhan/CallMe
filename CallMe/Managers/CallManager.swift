@@ -120,7 +120,10 @@ extension CallManagerImplemented {
     func leaveCall() {
         let result = agoraEngine.leaveChannel(nil)
         // Check if leaving the channel was successful and set joined Bool accordingly
-        if result == 0 { joined = false }
+        if result == 0 {
+            joined = false
+            status.send("Leaving the call")
+        }
     }
 
     /// - Handling an outgoing call
@@ -128,6 +131,7 @@ extension CallManagerImplemented {
         controller = CXCallController()
         let transaction = CXTransaction(action: CXStartCallAction(call: UUID(), handle: CXHandle(type: .generic, value: "Mehmet Outgoing")))
         controller?.request(transaction, completion: { _ in })
+        status.send("Starting a call")
     }
 
     /// - Connecting an outgoing call
@@ -135,6 +139,7 @@ extension CallManagerImplemented {
         guard let controller,
               !controller.callObserver.calls.isEmpty else { return }
         provider?.reportOutgoingCall(with: controller.callObserver.calls[0].uuid, connectedAt: nil)
+        status.send("Connecting the call")
     }
 }
 

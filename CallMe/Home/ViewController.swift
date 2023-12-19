@@ -12,7 +12,6 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet var statusLabel: UILabel!
-    @IBOutlet var textView: UITextView!
 
     private var viewModel: ViewModel!
 
@@ -35,7 +34,7 @@ class ViewController: UIViewController {
             }
         }
 
-//        testStartingACall()
+//        testJoiningACall()
     }
 
 //    func testStartingACall() {
@@ -45,11 +44,11 @@ class ViewController: UIViewController {
 //        })
 //    }
 //
-//    func testJoiningACall() {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-//            self.manager.joinCall()
-//        })
-//    }
+    func testJoiningACall() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            CallManagerImplemented().joinCall()
+        })
+    }
 
     func checkForPermissions() async -> Bool {
         let hasPermissions = await avAuthorization(mediaType: .audio)
@@ -74,9 +73,13 @@ class ViewController: UIViewController {
 
 private extension ViewController {
     func setup() {
-        let peopleView = PeopleListView { person in
-            // TODO: Trigger phone call
-            print(person.id)
+        setupUI()
+        setupSubscribers()
+    }
+
+    func setupUI() {
+        let peopleView = PeopleListView { [weak self] person in
+            self?.viewModel.startPhoneCall(withPerson: person)
         }
 
         let config = UIHostingConfiguration {
@@ -92,25 +95,26 @@ private extension ViewController {
             peopleSubview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             peopleSubview.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             peopleSubview.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            peopleSubview.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            peopleSubview.bottomAnchor.constraint(equalTo: statusLabel.topAnchor, constant: -20),
         ])
+    }
 
-//        manager.statusPublisher
-//            .receive(on: RunLoop.main)
-//            .sink { completion in
-//                switch completion {
-//                case .finished:
-//                    // Handle finished state
-//                    break
-//                case let .failure(error):
-//                    // Handle error state
-//                    print(error.localizedDescription)
-//                    break
-//                }
-//            } receiveValue: { status in
-//                self.statusLabel.text = status
-//                self.textView.text = status
-//            }
-//            .store(in: &cancellables)
+    func setupSubscribers() {
+        viewModel.statusPublisher?
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    // Handle finished state
+                    break
+                case let .failure(error):
+                    // Handle error state
+                    print(error.localizedDescription)
+                    break
+                }
+            } receiveValue: { status in
+                self.statusLabel.text = status
+            }
+            .store(in: &cancellables)
     }
 }
