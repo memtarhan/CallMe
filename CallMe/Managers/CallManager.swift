@@ -13,6 +13,7 @@ import PushKit
 import UIKit
 
 protocol CallManager {
+    var tokenPublisher: AnyPublisher<String, Error> { get }
     var statusPublisher: AnyPublisher<String, Error> { get }
 
     /// Handles joining a going on call (incoming call)
@@ -26,10 +27,15 @@ protocol CallManager {
 }
 
 class CallManagerImplemented: NSObject, CallManager {
+    var tokenPublisher: AnyPublisher<String, Error> {
+        token.eraseToAnyPublisher()
+    }
+
     var statusPublisher: AnyPublisher<String, Error> {
         status.eraseToAnyPublisher()
     }
 
+    private var token = PassthroughSubject<String, Error>()
     private var status = PassthroughSubject<String, Error>()
 
     private var configuration: CXProviderConfiguration?
@@ -45,7 +51,7 @@ class CallManagerImplemented: NSObject, CallManager {
     // Update with the App ID of your project generated on Agora Console.
     private let appID = "5e4ccb78bc6f451bbe3c5c56eb033d99"
     // Update with the temporary token generated in Agora Console.
-    private var token = "007eJxTYPCYHqCZceTR7DcpbK61t1xOye8S2nDh+6lnIod1NeYyXn2gwGCaapKcnGRukZRslmZiapiUlGqcbJpsapaaZGBsnGJp6fijMrUhkJFh3uUnjIwMEAjiszGkpObm61YwMAAAEE0ijQ=="
+    private var agoraToken = "007eJxTYPCYHqCZceTR7DcpbK61t1xOye8S2nDh+6lnIod1NeYyXn2gwGCaapKcnGRukZRslmZiapiUlGqcbJpsapaaZGBsnGJp6fijMrUhkJFh3uUnjIwMEAjiszGkpObm61YwMAAAEE0ijQ=="
     // Update with the channel name you used to generate the token in Agora Console.
     private var channelName = "demo-x"
 
@@ -100,7 +106,7 @@ extension CallManagerImplemented {
 
         // Join the channel with a temp token and channel name
         let result = agoraEngine.joinChannel(
-            byToken: token, channelId: channelName, uid: 0, mediaOptions: option,
+            byToken: agoraToken, channelId: channelName, uid: 0, mediaOptions: option,
             joinSuccess: { _, _, _ in }
         )
 
@@ -157,8 +163,7 @@ extension CallManagerImplemented: CXProviderDelegate {
 extension CallManagerImplemented: PKPushRegistryDelegate {
     func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
         let token = pushCredentials.token.map { String(format: "%02.2hhx", $0) }.joined()
-        print(token)
-        status.send(token)
+        self.token.send(token)
     }
 
     // MARK: A call is received via notifications
