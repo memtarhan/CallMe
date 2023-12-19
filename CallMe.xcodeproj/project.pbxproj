@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43837A382B313E7700678132 /* CallService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43837A372B313E7700678132 /* CallService.swift */; };
+		43837A3A2B313ECB00678132 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43837A392B313ECB00678132 /* HTTPRequest.swift */; };
+		43837A3C2B313F0100678132 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43837A3B2B313F0100678132 /* NetworkService.swift */; };
+		43837A3E2B313FE500678132 /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43837A3D2B313FE500678132 /* URL+.swift */; };
+		43837A402B31402300678132 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43837A3F2B31402300678132 /* Error.swift */; };
+		43837A422B3140F200678132 /* HTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43837A412B3140F200678132 /* HTTPResponse.swift */; };
 		438852C12B309096003514F3 /* CallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438852C02B309096003514F3 /* CallManager.swift */; };
 		438852C42B3090C4003514F3 /* AIAEC in Frameworks */ = {isa = PBXBuildFile; productRef = 438852C32B3090C4003514F3 /* AIAEC */; };
 		438852C62B3090C4003514F3 /* AINS in Frameworks */ = {isa = PBXBuildFile; productRef = 438852C52B3090C4003514F3 /* AINS */; };
@@ -21,6 +27,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43837A372B313E7700678132 /* CallService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallService.swift; sourceTree = "<group>"; };
+		43837A392B313ECB00678132 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
+		43837A3B2B313F0100678132 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		43837A3D2B313FE500678132 /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
+		43837A3F2B31402300678132 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		43837A412B3140F200678132 /* HTTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponse.swift; sourceTree = "<group>"; };
 		438852C02B309096003514F3 /* CallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
 		4399DC202B2FECFA00EA2C1E /* CallMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4399DC232B2FECFA00EA2C1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +60,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43837A432B31433D00678132 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				43837A372B313E7700678132 /* CallService.swift */,
+				43837A3F2B31402300678132 /* Error.swift */,
+				43837A392B313ECB00678132 /* HTTPRequest.swift */,
+				43837A412B3140F200678132 /* HTTPResponse.swift */,
+				43837A3B2B313F0100678132 /* NetworkService.swift */,
+				43837A3D2B313FE500678132 /* URL+.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		4399DC172B2FECFA00EA2C1E = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +101,7 @@
 				4399DC2E2B2FECFC00EA2C1E /* LaunchScreen.storyboard */,
 				4399DC312B2FECFC00EA2C1E /* Info.plist */,
 				438852C02B309096003514F3 /* CallManager.swift */,
+				43837A432B31433D00678132 /* Network */,
 			);
 			path = CallMe;
 			sourceTree = "<group>";
@@ -162,8 +188,14 @@
 			files = (
 				4399DC282B2FECFA00EA2C1E /* ViewController.swift in Sources */,
 				4399DC242B2FECFA00EA2C1E /* AppDelegate.swift in Sources */,
+				43837A422B3140F200678132 /* HTTPResponse.swift in Sources */,
+				43837A382B313E7700678132 /* CallService.swift in Sources */,
+				43837A3E2B313FE500678132 /* URL+.swift in Sources */,
+				43837A3A2B313ECB00678132 /* HTTPRequest.swift in Sources */,
 				4399DC262B2FECFA00EA2C1E /* SceneDelegate.swift in Sources */,
 				438852C12B309096003514F3 /* CallManager.swift in Sources */,
+				43837A402B31402300678132 /* Error.swift in Sources */,
+				43837A3C2B313F0100678132 /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
