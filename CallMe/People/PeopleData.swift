@@ -5,7 +5,7 @@
 //  Created by Mehmet Tarhan on 19/12/2023.
 //
 
-import Foundation
+import UIKit 
 
 struct Person: Identifiable {
     let id: String
@@ -13,6 +13,9 @@ struct Person: Identifiable {
     let deviceType: String
     let deviceRegion: String?
     let deviceToken: String
+    var isMe: Bool {
+        id == UIDevice.current.identifierForVendor?.uuidString
+    }
     
     static let sample = Person(id: "identifier", deviceName: "iPhone 12", deviceType: "iPhone", deviceRegion: "PT", deviceToken: "deviceToken")
 }

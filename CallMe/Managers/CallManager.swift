@@ -51,9 +51,9 @@ class CallManagerImplemented: NSObject, CallManager {
     // Update with the App ID of your project generated on Agora Console.
     private let appID = "5e4ccb78bc6f451bbe3c5c56eb033d99"
     // Update with the temporary token generated in Agora Console.
-    private var agoraToken = "007eJxTYPCYHqCZceTR7DcpbK61t1xOye8S2nDh+6lnIod1NeYyXn2gwGCaapKcnGRukZRslmZiapiUlGqcbJpsapaaZGBsnGJp6fijMrUhkJFh3uUnjIwMEAjiszGkpObm61YwMAAAEE0ijQ=="
+    private var agoraToken = "007eJxTYGjbsEV7K1+Sx+XTAYcfhCcGrn6TcefYO6fbs99XBGq4rjytwGCaapKcnGRukZRslmZiapiUlGqcbJpsapaaZGBsnGJp6b67MbUhkJFhZpAHAyMUgvjcDMmJOTm5qbopqbn5DAwAHwEkoA=="
     // Update with the channel name you used to generate the token in Agora Console.
-    private var channelName = "demo-x"
+    private var channelName = "callme-demo"
 
     // Track if the local user is in a call
     var joined: Bool = false {

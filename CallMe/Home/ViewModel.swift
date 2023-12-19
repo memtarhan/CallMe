@@ -38,13 +38,14 @@ class ViewModel {
             }
             .store(in: &cancellables)
     }
-    
+
     func startPhoneCall(withPerson person: Person) {
         Task(priority: .background) {
             // TODO: Handle error with try/catch
-            try? await self.callService.sendCallNotification(to:person.deviceToken)
+            try? await self.callService.sendCallNotification(to: person.deviceToken)
         }
-        
-        callManager.startCall()
+
+        // TODO: Implement dynamic channels, there's only 1 static channel for testing purposes
+        callManager.joinCall()
     }
 }

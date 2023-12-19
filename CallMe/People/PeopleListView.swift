@@ -18,13 +18,15 @@ struct PeopleListView: View {
                 HStack(spacing: 20) {
                     PersonRow(person: person)
 
-                    Button {
-                        onSelection(person)
-                    } label: {
-                        HStack {
-                            Image(systemName: "chevron.forward")
-                            Image(systemName: "phone.fill")
-                                .font(.largeTitle)
+                    if !person.isMe {
+                        Button {
+                            onSelection(person)
+                        } label: {
+                            HStack {
+                                Image(systemName: "chevron.forward")
+                                Image(systemName: "phone.fill")
+                                    .font(.largeTitle)
+                            }
                         }
                     }
                 }
